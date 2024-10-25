@@ -1,0 +1,15 @@
+-- 코드를 입력하세요
+SELECT HISTORY_ID, CAR_ID,
+       DATE_FORMAT(START_DATE, '%Y-%m-%d') as START_DATE, 
+       DATE_FORMAT(END_DATE, '%Y-%m-%d') as END_DATE,
+       IF(DATEDIFF(END_DATE, START_DATE) >= 29, '장기 대여','단기 대여') AS RENT_TYPE
+       -- CASE
+       --   WHEN DATEDIFF(END_DATE, START_DATE) + 1>= 30 THEN '장기 대여'
+       --   ELSE '단기 대여'
+       -- END AS RENT_TYPE
+       -- *** 대여일부터 1일... 따라서 29일 차이나야 대여기간이 30일  
+FROM CAR_RENTAL_COMPANY_RENTAL_HISTORY
+WHERE START_DATE BETWEEN '2022-09-01' AND '2022-09-30'
+      --  START_DATE LIKE '2022-09-%'
+      --  YEAR(START_DATE) = 2022 AND MONTH(START_DATE) = 9
+ORDER BY HISTORY_ID DESC
