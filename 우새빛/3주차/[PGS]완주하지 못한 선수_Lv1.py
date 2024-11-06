@@ -21,6 +21,8 @@ def solution(participant, completion):
    다른 사람들 방법 - key : hash(p), value : p
                    - dict에 participant 명단의 사람을 추가하며 hash(p)값의 총합을 구함
                      후에 completion 명단의 사람의 hash(p)값을 구한 총합에서 제거 -> 남은 hash값을 key값으로 가진 사람이 완주 못한 선수 
+
+***해시를 써야할 때 : string 기반으로 정보를 기록하고 관리해야할 때
 """
 
 def solution2(participant, completion):
