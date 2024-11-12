@@ -1,0 +1,15 @@
+SELECT MAX_E.YEAR
+    -- 편차 = 연도별 가장 큰 대장균의 크기 - 각 대장균의 크기
+    , MAX_E.MAX_SIZE - ED.SIZE_OF_COLONY AS YEAR_DEV
+    , ED.ID
+FROM ECOLI_DATA ED
+JOIN (
+    -- 연도별로 가장 큰 대장균의 크기를 구하는 서브쿼리
+    SELECT YEAR(DIFFERENTIATION_DATE) AS YEAR
+        , MAX(SIZE_OF_COLONY) AS MAX_SIZE
+    FROM ECOLI_DATA
+    GROUP BY YEAR
+) MAX_E
+    -- 연도가 같은 것끼리 JOIN
+    ON YEAR(ED.DIFFERENTIATION_DATE) = MAX_E.YEAR
+ORDER BY YEAR, YEAR_DEV
