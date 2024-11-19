@@ -27,4 +27,5 @@ if len(arr) > 0:
   print(sum(arr))
   print(min(arr))
 else:
+  
   print(-1)
