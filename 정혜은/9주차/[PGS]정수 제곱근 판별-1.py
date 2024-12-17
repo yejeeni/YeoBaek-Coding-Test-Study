@@ -1,4 +1,4 @@
-n=101
+n=121
 import math
 def solution(n):
     answer = 0
