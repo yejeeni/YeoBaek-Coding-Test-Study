@@ -19,7 +19,7 @@ n0 = int(input())
 f1 = a1 * n0 + a0
 g1 = c * n0
 
-if f1 <= g1 and a1 <= c:
+if f1 <= g1 and a1 <= c: # a1이 음수일 수 있음
   print(1)
 else:
   print(0)
