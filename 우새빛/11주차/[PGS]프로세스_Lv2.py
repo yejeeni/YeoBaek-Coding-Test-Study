@@ -1,38 +1,28 @@
 from collections import deque
 
-def solution(bridge_length, weight, truck_weights):
+def solution(priorities, location):
     answer = 0
     
-    wait_num = 0 #대기트럭 중 가장 앞 트럭이 truck_weights에서 몇번째인지
-    bridge = deque()
-    time = deque()
-    total_weights = 0
+    queue = deque(priorities)
     
-    check = False
-    while check == False:
-        answer += 1 #시간 추가
+    while location != -1:
+        now = queue.popleft() #큐에서 대기 중인 큐 하나를 꺼냄
         
-        #시간이 지남에 따라 다리위의 트럭들이 건너야할 시간 줄이기
-        for t in range(len(time)):
-            time[t] -= 1
-        
-        if (wait_num != 0) and (time[0] == 0): #다리를 다 건넜다면 큐와 무게에서 제거
-            time.popleft()
-            run_weights = bridge.popleft()
-            total_weights -= run_weights
-            if (wait_num == len(truck_weights) and len(bridge) == 0): #마지막 트럭이 다리를 다 건넜다면 종료
+        check = False #대기 중인 프로세스 중 우선순위가 더 높은 프로세스가 있는지 확인
+        for q in queue:
+            if now < q:
                 check = True
+                break
         
-        #대기 중인 트럭이 없다면 그냥 다음으로
-        if wait_num == len(truck_weights): 
-            continue
-        
-        #다리에 트럭이 올라갈 수 있는지 확인    
-        wait_weights = truck_weights[wait_num] #가장 앞 대기트럭 무게
-        if (total_weights + wait_weights) <= weight:
-            bridge.append(wait_weights)
-            time.append(bridge_length)
-            total_weights += wait_weights
-            wait_num += 1
-        
+        if check == True: #있다면 방금 꺼낸 프로세스를 다시 큐에 넣기
+            queue.append(now)
+            location -= 1
+            if location < 0:
+                location = len(queue) - 1
+        else : #만약 그런 프로세스가 없다면 방금 꺼낸 프로세스를 실행(다시 큐에 넣지 않음)
+            answer += 1
+            location -= 1
+            if location < 0: #이때 우리가 원하는 프로세스의 위치가 0이하라면 방금 실행됨을 의미
+                location = -1
+    
     return answer
