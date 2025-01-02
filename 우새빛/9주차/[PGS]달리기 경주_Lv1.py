@@ -18,13 +18,13 @@ def solution2(players, callings): #통과
         ranking[p] = i
     
     for c in callings:
-        overtake = ranking[c] #현재 추월한 선수의 순위 찾기
+        current_rank = ranking[c] #현재 추월한 선수의 순위 찾기
         
-        temp = players[overtake - 1] #랭킹 업데이트
+        temp = players[current_rank - 1] #랭킹 업데이트
         ranking[temp] += 1
         ranking[c] -= 1
         
-        players[overtake] = players[overtake - 1] #순위 교체
-        players[overtake - 1] = c
+        players[current_rank] = players[current_rank - 1] #순위 교체
+        players[current_rank - 1] = c
         
     return players
