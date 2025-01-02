@@ -13,8 +13,6 @@ def solution(park, routes):
             if p == 'X':
                 hurdle.append([h, w])  
     
-    print("h", hurdle)
-    
     temp = [] #진행 할 수 있는 경로인지 판단 후 이동
     for route in routes:        
         dir, dist = route.split()
