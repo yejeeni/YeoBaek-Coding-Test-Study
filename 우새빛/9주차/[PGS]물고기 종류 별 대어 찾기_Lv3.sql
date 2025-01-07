@@ -1,0 +1,17 @@
+-- 오류 -> ***GROUP BY 절에 포함되지 않은 컬럼이 
+--            SELECT 절에서 집계 함수로 묶이지 않은 경우 오류가 발생
+--            (MySQL에서 sql_mode=only_full_group_by가 활성화된 상태에서)
+SELECT I.ID, N.FISH_NAME, MAX(I.LENGTH) as LENGTH 
+FROM FISH_INFO I JOIN FISH_NAME_INFO N ON I.FISH_TYPE = N.FISH_TYPE
+GROUP BY FISH_TYPE
+AND LENGTH IS NOT NULL
+ORDER BY ID ASC
+
+-- 코드를 작성해주세요
+SELECT I.ID, N.FISH_NAME, I.LENGTH
+FROM FISH_INFO I JOIN FISH_NAME_INFO N ON I.FISH_TYPE = N.FISH_TYPE
+WHERE I.LENGTH = (SELECT MAX(LENGTH) FROM FISH_INFO SUB_I
+                  WHERE I.FISH_TYPE = SUB_I.FISH_TYPE --***해당 물고기 종류별 MAX(LENGTH)를 구하기 위해
+                  GROUP BY FISH_TYPE)
+AND I.LENGTH IS NOT NULL
+ORDER BY ID ASC
