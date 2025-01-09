@@ -22,6 +22,8 @@ def solution(bridge_length, weight, truck_weights):
             total_weights -= run_weights
             if (wait_num == len(truck_weights) and len(bridge) == 0): #마지막 트럭이 다리를 다 건넜다면 종료
                 check = True
+
+        print(time)
         
         #대기 중인 트럭이 없다면 그냥 다음으로
         if wait_num == len(truck_weights): 
