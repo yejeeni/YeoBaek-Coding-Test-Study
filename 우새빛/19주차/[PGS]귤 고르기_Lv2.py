@@ -33,7 +33,7 @@ def solution(k, tangerine):
     
     heap = []
     for key, count in count_list.items():
-        heapq.heappush(heap, (-count, key))  #개수를 음수로 넣어 가장 큰 값이 root로 오도록
+        heapq.heappush(heap, (-count, key))  #개수를 음수로 넣어 가장 큰 값이 root로 오도록 (파이썬에서 heapq는 min heap)
     
     while k > 0:
         count, key = heapq.heappop(heap)  #최대값
