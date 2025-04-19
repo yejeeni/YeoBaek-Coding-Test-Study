@@ -17,11 +17,11 @@ FROM (
             WHEN -- C : 그 외의 Front End 개발자
                 SKILL_CODE & (SELECT FECODE FROM FE)
             THEN 'C'
-        END AS GRADE -- 서브쿼리에는 alias 필수
+        END AS GRADE 
         , ID
         , EMAIL
     FROM DEVELOPERS
-) AS DEV
+) AS DEV -- 서브쿼리에는 alias 필수
 WHERE GRADE IS NOT NULL
 ORDER BY GRADE, ID ASC
 
