@@ -13,6 +13,8 @@ distance = []
 for i in range(n-1):
     # 두 나무의 거리를 배열에 저장
     distance.append(arr[i+1] - arr[i])
+    # 리스트 컴프리헨션으로 작성
+    # distance = [arr[i+1] - arr[i] for i in range(n-1)]
 
 point = math.gcd(*distance)
 
@@ -21,3 +23,17 @@ for d in distance:
     result += d // point - 1 # 두 나무의 거리를 심어야하는 거리 단위로 나눔
 
 print(result)
+
+
+"""
+## 리스트 컴프리헨션
+
+result = []
+for 요소 in 반복가능한_객체:
+    result.append(표현식)
+
+위 반복문을 다음과 같이 줄여 작성할 수 있다.
+
+[표현식 for 요소 in 반복가능한_객체]
+
+"""
