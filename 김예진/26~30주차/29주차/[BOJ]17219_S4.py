@@ -19,8 +19,8 @@ for _ in range(n):
 
 for _ in range(m):
     search_ad = sys.stdin.readline().strip() # strip() : 문자열 반환
-    print(ad_pw[search_ad])
 
+    print(ad_pw[search_ad])
         # print(search_ad, "==", address[i], "?")
         # if address[i] == search_ad:
         #     print(password[i])
